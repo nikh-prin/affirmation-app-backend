@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  # Backend API service
+  api:
+    build: 
+      context: .
+    ports:
+      - "4000:4000"
+    depends_on:
+      - db
+    environment:
+      - NODE_ENV=production
+      - DATABASE_URL=postgresql://postgres:postgres@db:5432/affirmation_app
+      - JWT_SECRET=your_jwt_secret_here # Replace with actual secret in production
+    restart: always
+
+  # PostgreSQL Database
+  db:
+    image: postgres:14-alpine
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=affirmation_app
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    restart: always
+
+volumes:
+  postgres_data:

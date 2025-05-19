@@ -1,0 +1,602 @@
+[
+  {
+    "id": "1",
+    "text": "I am capable of achieving anything I set my mind to.",
+    "category": "Success",
+    "isPremium": false
+  },
+  {
+    "id": "2",
+    "text": "Today is full of endless opportunities.",
+    "category": "General",
+    "isPremium": false
+  },
+  {
+    "id": "3",
+    "text": "I choose to be confident and self-assured.",
+    "category": "Success",
+    "isPremium": false
+  },
+  {
+    "id": "4",
+    "text": "I am worthy of respect and acceptance.",
+    "category": "Peace",
+    "isPremium": false
+  },
+  {
+    "id": "5",
+    "text": "My potential to succeed is infinite.",
+    "category": "Success",
+    "isPremium": true
+  },
+  {
+    "id": "6",
+    "text": "I trust in my ability to make good decisions.",
+    "category": "General",
+    "isPremium": false
+  },
+  {
+    "id": "7",
+    "text": "I radiate positivity and attract positivity.",
+    "category": "Peace",
+    "isPremium": false
+  },
+  {
+    "id": "8",
+    "text": "I am becoming a better version of myself every day.",
+    "category": "General",
+    "isPremium": false
+  },
+  {
+    "id": "9",
+    "text": "I embrace challenges as opportunities to grow.",
+    "category": "Success",
+    "isPremium": false
+  },
+  {
+    "id": "10",
+    "text": "My mind is full of brilliant ideas.",
+    "category": "Success",
+    "isPremium": true
+  },
+  {
+    "id": "11",
+    "text": "I am resilient and can overcome any obstacle.",
+    "category": "Success",
+    "isPremium": false
+  },
+  {
+    "id": "12",
+    "text": "I am grateful for all the good in my life.",
+    "category": "Peace",
+    "isPremium": false
+  },
+  {
+    "id": "13",
+    "text": "I attract success and abundance into my life.",
+    "category": "Success",
+    "isPremium": false
+  },
+  {
+    "id": "14",
+    "text": "I am surrounded by love and support.",
+    "category": "Love",
+    "isPremium": false
+  },
+  {
+    "id": "15",
+    "text": "I am at peace with who I am.",
+    "category": "Peace",
+    "isPremium": true
+  },
+  {
+    "id": "16",
+    "text": "I choose happiness and joy every day.",
+    "category": "Peace",
+    "isPremium": false
+  },
+  {
+    "id": "17",
+    "text": "I am strong, both mentally and physically.",
+    "category": "Health",
+    "isPremium": false
+  },
+  {
+    "id": "18",
+    "text": "I forgive myself and others easily.",
+    "category": "Peace",
+    "isPremium": false
+  },
+  {
+    "id": "19",
+    "text": "I am open to new experiences and perspectives.",
+    "category": "General",
+    "isPremium": false
+  },
+  {
+    "id": "20",
+    "text": "I make a positive impact on the world around me.",
+    "category": "General",
+    "isPremium": true
+  },
+  {
+    "id": "21",
+    "text": "I am a magnet for miracles.",
+    "category": "Success",
+    "isPremium": false
+  },
+  {
+    "id": "22",
+    "text": "I believe in the power of my dreams.",
+    "category": "Success",
+    "isPremium": false
+  },
+  {
+    "id": "23",
+    "text": "I am creative and resourceful.",
+    "category": "Success",
+    "isPremium": false
+  },
+  {
+    "id": "24",
+    "text": "I handle stress with ease and grace.",
+    "category": "Peace",
+    "isPremium": false
+  },
+  {
+    "id": "25",
+    "text": "I am deserving of all good things.",
+    "category": "General",
+    "isPremium": true
+  },
+  {
+    "id": "26",
+    "text": "My heart is open to giving and receiving love.",
+    "category": "Love",
+    "isPremium": false
+  },
+  {
+    "id": "27",
+    "text": "I am a unique and valuable individual.",
+    "category": "General",
+    "isPremium": false
+  },
+  {
+    "id": "28",
+    "text": "I learn from my mistakes and grow stronger.",
+    "category": "Success",
+    "isPremium": false
+  },
+  {
+    "id": "29",
+    "text": "I am filled with energy and vitality.",
+    "category": "Health",
+    "isPremium": true
+  },
+  {
+    "id": "30",
+    "text": "I celebrate my accomplishments, big and small.",
+    "category": "Success",
+    "isPremium": false
+  },
+  {
+    "id": "31",
+    "text": "I am in control of my thoughts and emotions.",
+    "category": "Peace",
+    "isPremium": false
+  },
+  {
+    "id": "32",
+    "text": "I attract positive and supportive people into my life.",
+    "category": "Love",
+    "isPremium": false
+  },
+  {
+    "id": "33",
+    "text": "I am living a life full of purpose and passion.",
+    "category": "Success",
+    "isPremium": false
+  },
+  {
+    "id": "34",
+    "text": "I am kind and compassionate towards myself and others.",
+    "category": "Love",
+    "isPremium": true
+  },
+  {
+    "id": "35",
+    "text": "I am constantly learning and evolving.",
+    "category": "Success",
+    "isPremium": false
+  },
+  {
+    "id": "36",
+    "text": "I trust the journey of my life.",
+    "category": "Peace",
+    "isPremium": false
+  },
+  {
+    "id": "37",
+    "text": "I am a source of inspiration to others.",
+    "category": "Success",
+    "isPremium": false
+  },
+  {
+    "id": "38",
+    "text": "I let go of what no longer serves me.",
+    "category": "Peace",
+    "isPremium": false
+  },
+  {
+    "id": "39",
+    "text": "I am creating the life of my dreams.",
+    "category": "Success",
+    "isPremium": false
+  },
+  {
+    "id": "40",
+    "text": "I am enough, just as I am.",
+    "category": "General",
+    "isPremium": true
+  },
+  {
+    "id": "41",
+    "text": "Every day in every way, I am getting better and better.",
+    "category": "Health",
+    "isPremium": false
+  },
+  {
+    "id": "42",
+    "text": "I am in perfect health, and my body functions optimally.",
+    "category": "Health",
+    "isPremium": false
+  },
+  {
+    "id": "43",
+    "text": "My body heals quickly and efficiently.",
+    "category": "Health",
+    "isPremium": false
+  },
+  {
+    "id": "44",
+    "text": "I make healthy choices that support my well-being.",
+    "category": "Health",
+    "isPremium": false
+  },
+  {
+    "id": "45",
+    "text": "I love and respect my body exactly as it is.",
+    "category": "Health",
+    "isPremium": true
+  },
+  {
+    "id": "46",
+    "text": "I attract loving relationships that nurture my soul.",
+    "category": "Love",
+    "isPremium": false
+  },
+  {
+    "id": "47",
+    "text": "I am deserving of deep, meaningful connections.",
+    "category": "Love",
+    "isPremium": false
+  },
+  {
+    "id": "48",
+    "text": "I give and receive love freely and openly.",
+    "category": "Love",
+    "isPremium": false
+  },
+  {
+    "id": "49",
+    "text": "My relationships grow stronger and more fulfilling each day.",
+    "category": "Love",
+    "isPremium": false
+  },
+  {
+    "id": "50",
+    "text": "I am a magnet for love and positive relationships.",
+    "category": "Love",
+    "isPremium": true
+  },
+  {
+    "id": "51",
+    "text": "I am at peace with my past and excited for my future.",
+    "category": "Peace",
+    "isPremium": false
+  },
+  {
+    "id": "52",
+    "text": "I release all tension and embrace inner calm.",
+    "category": "Peace",
+    "isPremium": false
+  },
+  {
+    "id": "53",
+    "text": "I am centered, peaceful, and grounded no matter what.",
+    "category": "Peace",
+    "isPremium": false
+  },
+  {
+    "id": "54",
+    "text": "I breathe in peace and exhale all that no longer serves me.",
+    "category": "Peace",
+    "isPremium": false
+  },
+  {
+    "id": "55",
+    "text": "My mind is clear, calm, and focused on the present moment.",
+    "category": "Peace",
+    "isPremium": true
+  },
+  {
+    "id": "56",
+    "text": "I am financially abundant and prosperous.",
+    "category": "Success",
+    "isPremium": false
+  },
+  {
+    "id": "57",
+    "text": "Money flows to me easily and effortlessly.",
+    "category": "Success",
+    "isPremium": false
+  },
+  {
+    "id": "58",
+    "text": "I am worthy of success and abundance in all areas of my life.",
+    "category": "Success",
+    "isPremium": false
+  },
+  {
+    "id": "59",
+    "text": "Every challenge I face is an opportunity for growth and success.",
+    "category": "Success",
+    "isPremium": false
+  },
+  {
+    "id": "60",
+    "text": "I attract success naturally through my authentic talents.",
+    "category": "Success",
+    "isPremium": true
+  },
+  {
+    "id": "61",
+    "text": "I embrace each day with enthusiasm and optimism.",
+    "category": "General",
+    "isPremium": false
+  },
+  {
+    "id": "62",
+    "text": "I am connected to infinite wisdom and inner guidance.",
+    "category": "General",
+    "isPremium": false
+  },
+  {
+    "id": "63",
+    "text": "I trust my intuition and follow my inner wisdom.",
+    "category": "General",
+    "isPremium": false
+  },
+  {
+    "id": "64",
+    "text": "I am exactly where I need to be on my journey.",
+    "category": "General",
+    "isPremium": false
+  },
+  {
+    "id": "65",
+    "text": "I am aligned with my highest purpose and greatest joy.",
+    "category": "General",
+    "isPremium": true
+  },
+  {
+    "id": "66",
+    "text": "My immune system is strong and protects me perfectly.",
+    "category": "Health",
+    "isPremium": false
+  },
+  {
+    "id": "67",
+    "text": "I sleep deeply and wake refreshed and energized.",
+    "category": "Health",
+    "isPremium": false
+  },
+  {
+    "id": "68",
+    "text": "Every cell in my body vibrates with health and vitality.",
+    "category": "Health",
+    "isPremium": false
+  },
+  {
+    "id": "69",
+    "text": "I nourish my body with healthy foods and positive thoughts.",
+    "category": "Health",
+    "isPremium": false
+  },
+  {
+    "id": "70",
+    "text": "My body is a temple of strength, wellness, and balance.",
+    "category": "Health",
+    "isPremium": true
+  },
+  {
+    "id": "71",
+    "text": "I am whole, complete, and perfect exactly as I am.",
+    "category": "Love",
+    "isPremium": false
+  },
+  {
+    "id": "72",
+    "text": "I communicate my needs clearly and with compassion.",
+    "category": "Love",
+    "isPremium": false
+  },
+  {
+    "id": "73",
+    "text": "I attract people who appreciate and celebrate me.",
+    "category": "Love",
+    "isPremium": false
+  },
+  {
+    "id": "74",
+    "text": "I am worthy of deep, unconditional love.",
+    "category": "Love",
+    "isPremium": false
+  },
+  {
+    "id": "75",
+    "text": "Self-love flows through me and transforms all my relationships.",
+    "category": "Love",
+    "isPremium": true
+  },
+  {
+    "id": "76",
+    "text": "I approach challenges with clarity and confidence.",
+    "category": "Success",
+    "isPremium": false
+  },
+  {
+    "id": "77",
+    "text": "I am focused, motivated, and determined to achieve my goals.",
+    "category": "Success",
+    "isPremium": false
+  },
+  {
+    "id": "78",
+    "text": "I turn setbacks into comebacks with grace and resilience.",
+    "category": "Success",
+    "isPremium": false
+  },
+  {
+    "id": "79",
+    "text": "I recognize and seize opportunities for growth and success.",
+    "category": "Success",
+    "isPremium": false
+  },
+  {
+    "id": "80",
+    "text": "I am manifesting my dreams into reality with each step I take.",
+    "category": "Success",
+    "isPremium": true
+  },
+  {
+    "id": "81",
+    "text": "I let go of anxiety and embrace calm confidence.",
+    "category": "Peace",
+    "isPremium": false
+  },
+  {
+    "id": "82",
+    "text": "I choose thoughts that create peace and harmony within me.",
+    "category": "Peace",
+    "isPremium": false
+  },
+  {
+    "id": "83",
+    "text": "I release all worries and embrace serene acceptance.",
+    "category": "Peace",
+    "isPremium": false
+  },
+  {
+    "id": "84",
+    "text": "My mind is a garden of peaceful, positive thoughts.",
+    "category": "Peace",
+    "isPremium": false
+  },
+  {
+    "id": "85",
+    "text": "I am a sanctuary of peace in an ever-changing world.",
+    "category": "Peace",
+    "isPremium": true
+  },
+  {
+    "id": "86",
+    "text": "I honor my unique path and personal journey.",
+    "category": "General",
+    "isPremium": false
+  },
+  {
+    "id": "87",
+    "text": "I am guided to make choices that align with my highest good.",
+    "category": "General",
+    "isPremium": false
+  },
+  {
+    "id": "88",
+    "text": "I embrace change as an opportunity for transformation.",
+    "category": "General",
+    "isPremium": false
+  },
+  {
+    "id": "89",
+    "text": "I am connected to the universal flow of wisdom and inspiration.",
+    "category": "General",
+    "isPremium": false
+  },
+  {
+    "id": "90",
+    "text": "My life unfolds in divine perfect timing.",
+    "category": "General",
+    "isPremium": true
+  },
+  {
+    "id": "91",
+    "text": "I am grateful for the abundance that flows into my life.",
+    "category": "Success",
+    "isPremium": false
+  },
+  {
+    "id": "92",
+    "text": "My potential is limitless and my opportunities are endless.",
+    "category": "Success",
+    "isPremium": false
+  },
+  {
+    "id": "93",
+    "text": "I create my reality with powerful, positive intentions.",
+    "category": "Success",
+    "isPremium": false
+  },
+  {
+    "id": "94",
+    "text": "Every day I am getting closer to achieving my dreams.",
+    "category": "Success",
+    "isPremium": false
+  },
+  {
+    "id": "95",
+    "text": "I am destined for success, prosperity, and abundance.",
+    "category": "Success",
+    "isPremium": true
+  },
+  {
+    "id": "96",
+    "text": "I am perfectly balanced in mind, body, and spirit.",
+    "category": "Health",
+    "isPremium": false
+  },
+  {
+    "id": "97",
+    "text": "My body is a reflection of my positive thoughts and healthy choices.",
+    "category": "Health",
+    "isPremium": false
+  },
+  {
+    "id": "98",
+    "text": "I love the feeling of strength and vitality in my body.",
+    "category": "Health",
+    "isPremium": false
+  },
+  {
+    "id": "99",
+    "text": "Health and wellness flow through every cell of my being.",
+    "category": "Health",
+    "isPremium": false
+  },
+  {
+    "id": "100",
+    "text": "I radiate health, vitality, and positive energy.",
+    "category": "Health",
+    "isPremium": true
+  }
+]

@@ -1,0 +1,30 @@
+services:
+  # Backend web service using Docker
+  - type: web
+    name: affirmation-app-backend
+    env: docker
+    repo: https://github.com/yourusername/affirmation-app-backend.git # Replace with your actual repo URL
+    region: oregon # or your preferred region
+    plan: free # Update based on your needs
+    branch: main # or your main branch name
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 4000
+      - key: DATABASE_URL
+        fromDatabase:
+          name: affirmation-db
+          property: connectionString
+      - key: JWT_SECRET
+        sync: false # This will be manually set in the Render dashboard
+
+# PostgreSQL database
+databases:
+  - name: affirmation-db
+    plan: free # Update based on your needs
+    region: oregon # or your preferred region
+    databaseName: affirmation_app
+    user: affirmation_user
