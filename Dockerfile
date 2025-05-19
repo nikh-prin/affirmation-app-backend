@@ -16,6 +16,9 @@ RUN npx prisma generate
 # Copy the rest of the application
 COPY . .
 
+# Make scripts executable
+RUN chmod +x ./scripts/*.sh
+
 # Build the TypeScript application
 RUN npm run build
 

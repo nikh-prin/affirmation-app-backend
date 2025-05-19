@@ -26,12 +26,14 @@ Before you begin, ensure you have the following installed:
 For local development, follow these steps:
 
 1. Clone the repository:
+
    ```bash
    git clone https://github.com/yourusername/my-affirmation-app.git
    cd my-affirmation-app
    ```
 
 2. Start the services using the deployment script:
+
    ```bash
    ./docker-deploy.sh up
    ```
@@ -39,12 +41,14 @@ For local development, follow these steps:
 3. The backend will be running at [http://localhost:4000](http://localhost:4000)
 
 4. Run database migrations and seed data:
+
    ```bash
    ./docker-deploy.sh migrate
    ./docker-deploy.sh seed
    ```
 
 5. To view logs:
+
    ```bash
    ./docker-deploy.sh logs
    ```
@@ -59,6 +63,7 @@ For local development, follow these steps:
 For production deployment, you'll need to configure environment variables properly:
 
 1. Create a `.env` file in the root directory with production settings:
+
    ```
    DATABASE_URL=postgresql://username:password@your-production-db-host:5432/affirmation_app
    JWT_SECRET=your-secure-jwt-secret
@@ -67,11 +72,13 @@ For production deployment, you'll need to configure environment variables proper
    ```
 
 2. Build a production Docker image:
+
    ```bash
    ./docker-deploy.sh build
    ```
 
 3. Push the image to a container registry:
+
    ```bash
    ./docker-deploy.sh push your-registry/name
    ```
@@ -108,11 +115,13 @@ The included `docker-deploy.sh` script provides several commands:
 
 1. Create an ECR repository for your Docker image
 2. Push your image:
+
    ```bash
    aws ecr get-login-password --region region | docker login --username AWS --password-stdin your-aws-account.dkr.ecr.region.amazonaws.com
-   
+
    ./docker-deploy.sh push your-aws-account.dkr.ecr.region.amazonaws.com/affirmation-app
    ```
+
 3. Deploy using AWS ECS or Fargate
 
 ### Google Cloud
@@ -135,20 +144,23 @@ The included `docker-deploy.sh` script provides several commands:
 ### Common Issues
 
 1. **Database Connection Issues**
+
    - Ensure your `DATABASE_URL` environment variable is correctly set
    - Check if the database is accessible from the Docker container network
 
 2. **Permission Issues**
+
    - If you encounter permission issues with the deployment script:
      ```bash
      chmod +x docker-deploy.sh
      ```
 
 3. **Port Conflicts**
+
    - If port 4000 is already in use, modify the ports in `docker-compose.yml`:
      ```yaml
      ports:
-       - "4001:4000"  # Maps host port 4001 to container port 4000
+       - "4001:4000" # Maps host port 4001 to container port 4000
      ```
 
 4. **Checking Container Logs**
