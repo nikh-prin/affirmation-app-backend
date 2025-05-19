@@ -16,11 +16,11 @@ RUN npx prisma generate
 # Copy the rest of the application
 COPY . .
 
-# Make scripts executable
-RUN chmod +x ./scripts/*.sh
-
 # Build the TypeScript application
 RUN npm run build
+
+# Make sure data files are copied (as a fallback)
+RUN mkdir -p dist/data && cp -r src/data/*.json dist/data/ || echo "No JSON files found"
 
 # Expose the port the app runs on
 EXPOSE 4000
