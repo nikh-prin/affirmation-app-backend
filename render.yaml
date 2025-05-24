@@ -1,14 +1,15 @@
 services:
-  # Backend web service using Docker
+  # Backend web service using Node.js native environment
   - type: web
     name: affirmation-app-backend
-    env: docker
+    env: node # Changed from docker to node
     repo: https://github.com/nikh-prin/affirmation-app-backend.git # Your GitHub repository
     region: oregon # or your preferred region
     plan: free # Update based on your needs
     branch: main # or your main branch name
-    dockerfilePath: ./Dockerfile
     healthCheckPath: /api/health
+    buildCommand: "npm install && npm run build" # Added for Node.js environment
+    startCommand: "npm start" # Added for Node.js environment
     envVars:
       - key: NODE_ENV
         value: production
