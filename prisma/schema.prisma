@@ -32,6 +32,11 @@ model User {
   // Relationship to Favorite affirmations
   favorites Favorite[]
 
+  // Notification relationships
+  notificationTokens NotificationToken[]
+  scheduledNotifications ScheduledNotification[]
+  notificationHistory NotificationHistory[]
+
   @@map("users") // Maps the model name User to a table name "users" in the database
 }
 
@@ -114,6 +119,55 @@ model Favorite {
 
   @@unique([userId, affirmationId]) // Ensures a user cannot favorite the same affirmation multiple times
   @@map("favorites")
+}
+
+// Notification system tables
+model NotificationToken {
+  id         String   @id @default(uuid())
+  userId     String
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  token      String   @unique
+  platform   String   // 'ios', 'android', 'web'
+  isActive   Boolean  @default(true)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@map("notification_tokens")
+}
+
+model ScheduledNotification {
+  id                String   @id @default(uuid())
+  userId            String?  // null for global notifications
+  user              User?    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  title             String
+  body              String
+  data              Json?    // Additional data as JSON
+  scheduledFor      DateTime
+  timezone          String   @default("UTC")
+  isRecurring       Boolean  @default(false)
+  recurringPattern  String?  // 'daily', 'weekly', 'monthly', or cron expression
+  isActive          Boolean  @default(true)
+  lastSent          DateTime?
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  @@map("scheduled_notifications")
+}
+
+model NotificationHistory {
+  id               String   @id @default(uuid())
+  userId           String
+  user             User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  title            String
+  body             String
+  data             Json?
+  sentAt           DateTime @default(now())
+  status           String   // 'sent', 'delivered', 'failed', 'read'
+  expoReceiptId    String?  // For tracking Expo notification status
+  failureReason    String?
+  scheduledNotificationId String? // Reference to the scheduled notification that triggered this
+
+  @@map("notification_history")
 }
 
 // You might also consider a Payment model to log individual transactions

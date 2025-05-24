@@ -1,22 +1,21 @@
-import { Request, Response } from "express";
-import bcrypt from "bcrypt";
-import jwt from "jsonwebtoken";
-import prisma from "../prisma"; // Import the centralized Prisma client
-import { OAuth2Client } from "google-auth-library"; // Added import
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+const prisma = require("../prisma"); // Import the centralized Prisma client
+const { OAuth2Client } = require("google-auth-library"); // Added import
 
 const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID); // Added: Initialize Google Auth Client
 
 // Helper function to generate JWT
-const generateToken = (id: string): string => {
+const generateToken = (id) => {
   // Sign the token with the user ID and JWT secret from environment variables
   // Set an expiration time (e.e., 30 days)
-  return jwt.sign({ id }, process.env.JWT_SECRET as string, {
+  return jwt.sign({ id }, process.env.JWT_SECRET, {
     expiresIn: "30d",
   });
 };
 
 // Helper function to determine if user is premium
-const getSubscriptionInfo = async (userId: string) => {
+const getSubscriptionInfo = async (userId) => {
   const subscription = await prisma.subscription.findFirst({
     where: {
       userId: userId,
@@ -43,7 +42,7 @@ const getSubscriptionInfo = async (userId: string) => {
 // @desc    Register a new user
 // @route   POST /api/auth/register
 // @access  Public
-const registerUser = async (req: Request, res: Response) => {
+const registerUser = async (req, res) => {
   console.log("Register request received:", { email: req.body.email });
   const { email, password, name } = req.body; // Added name for potential manual registration
 
@@ -118,7 +117,7 @@ const registerUser = async (req: Request, res: Response) => {
 // @desc    Authenticate user & get token
 // @route   POST /api/auth/login
 // @access  Public
-const loginUser = async (req: Request, res: Response) => {
+const loginUser = async (req, res) => {
   console.log("Login request received:", { email: req.body.email });
   const { email, password } = req.body;
 
@@ -176,7 +175,7 @@ const loginUser = async (req: Request, res: Response) => {
 // @desc    Authenticate user with Google & get token
 // @route   POST /api/auth/google
 // @access  Public
-const googleSignIn = async (req: Request, res: Response) => {
+const googleSignIn = async (req, res) => {
   const { tokenId } = req.body;
   if (!tokenId) {
     return res.status(400).json({ message: "Google token ID is required" });
@@ -302,4 +301,4 @@ const googleSignIn = async (req: Request, res: Response) => {
   }
 };
 
-export { registerUser, loginUser, googleSignIn }; // Added googleSignIn to exports
+module.exports = { registerUser, loginUser, googleSignIn }; // Added googleSignIn to exports

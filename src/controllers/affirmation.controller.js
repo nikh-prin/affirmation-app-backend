@@ -1,18 +1,12 @@
-import { Request, Response } from "express";
-import prisma from "../prisma";
-import { getRandomAffirmation } from "../utils/affirmation.utils";
-
-// Define a custom interface to add user property to Request
-interface AuthRequest extends Request {
-  user?: { id: string };
-}
+const prisma = require("../prisma");
+const { getRandomAffirmation } = require("../utils/affirmation.utils");
 
 // @desc    Get all affirmations
 // @route   GET /api/affirmations
 // @access  Public
-export const getAffirmations = async (req: Request, res: Response) => {
+const getAffirmations = async (req, res) => {
   try {
-    const category = req.query.category as string | undefined;
+    const category = req.query.category;
 
     // Query affirmations from database with optional category filter
     const affirmations = await prisma.affirmation.findMany({
@@ -39,7 +33,7 @@ export const getAffirmations = async (req: Request, res: Response) => {
 // @desc    Get a single affirmation by ID
 // @route   GET /api/affirmations/:id
 // @access  Public
-export const getAffirmationById = async (req: Request, res: Response) => {
+const getAffirmationById = async (req, res) => {
   try {
     const { id } = req.params;
 
@@ -56,7 +50,7 @@ export const getAffirmationById = async (req: Request, res: Response) => {
     if (!affirmation) {
       // Fallback to static array
       const fallbackData = require("../data/fallbackAffirmations.json");
-      const fallbackAffirmation = fallbackData.find((a: any) => a.id === id);
+      const fallbackAffirmation = fallbackData.find((a) => a.id === id);
 
       if (fallbackAffirmation) {
         return res.json(fallbackAffirmation);
@@ -75,7 +69,7 @@ export const getAffirmationById = async (req: Request, res: Response) => {
 // @desc    Get daily affirmation
 // @route   GET /api/affirmations/daily
 // @access  Public (with optional authentication for personalization)
-export const getDailyAffirmation = async (req: AuthRequest, res: Response) => {
+const getDailyAffirmation = async (req, res) => {
   try {
     const userId = req.user?.id; // Optional user ID from auth middleware
 
@@ -138,4 +132,29 @@ export const getDailyAffirmation = async (req: AuthRequest, res: Response) => {
     console.error("Error fetching daily affirmation:", error);
     res.status(500).json({ message: "Server error" });
   }
+};
+
+// @desc    Get random affirmation
+// @route   GET /api/affirmations/random
+// @access  Public
+const getRandomAffirmationEndpoint = async (req, res) => {
+  try {
+    const affirmation = await getRandomAffirmation();
+
+    if (!affirmation) {
+      return res.status(404).json({ message: "Affirmation not found" });
+    }
+
+    res.json(affirmation);
+  } catch (error) {
+    console.error("Error fetching random affirmation:", error);
+    res.status(500).json({ message: "Server error" });
+  }
+};
+
+module.exports = {
+  getAffirmations,
+  getAffirmationById,
+  getDailyAffirmation,
+  getRandomAffirmationEndpoint,
 };

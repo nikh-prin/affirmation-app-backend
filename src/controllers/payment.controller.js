@@ -1,11 +1,5 @@
-import { Request, Response } from "express";
-import prisma from "../prisma"; // Import the centralized Prisma client
-import crypto from "crypto"; // Node.js built-in module for cryptography
-
-// Define a custom interface to add user property to Request, matching auth.middleware
-interface AuthRequest extends Request {
-  user?: { id: string };
-}
+const prisma = require("../prisma"); // Import the centralized Prisma client
+const crypto = require("crypto"); // Node.js built-in module for cryptography
 
 // --- Mock PhonePe Integration ---
 // In a real integration, you would use the actual PhonePe SDK or make HTTP requests
@@ -18,7 +12,7 @@ const MOCK_PHONEPE_SALT_INDEX = process.env.PHONEPE_SALT_INDEX || "1"; // As pro
 
 // Mock function to generate a signature (simplified)
 // In a real scenario, follow PhonePe's specific signature generation algorithm
-const generateMockSignature = (payload: any): string => {
+const generateMockSignature = (payload) => {
   const stringToHash =
     JSON.stringify(payload) + "/pg/v1/pay" + MOCK_PHONEPE_SALT; // Example string format
   const hash = crypto.createHash("sha256").update(stringToHash).digest("hex");
@@ -27,10 +21,7 @@ const generateMockSignature = (payload: any): string => {
 
 // Mock function to verify a webhook signature (simplified)
 // In a real scenario, follow PhonePe's specific signature verification algorithm
-const verifyMockWebhookSignature = (
-  body: any,
-  receivedSignature: string | undefined
-): boolean => {
+const verifyMockWebhookSignature = (body, receivedSignature) => {
   if (!receivedSignature) {
     return false;
   }
@@ -48,7 +39,7 @@ const verifyMockWebhookSignature = (
 // @desc    Create a mock payment order for premium subscription
 // @route   POST /api/payments/create-order
 // @access  Private (requires authentication)
-const createPaymentOrder = async (req: AuthRequest, res: Response) => {
+const createPaymentOrder = async (req, res) => {
   const userId = req.user?.id;
   const { plan } = req.body; // Expecting the plan (e.g., 'premium_monthly')
 
@@ -126,7 +117,7 @@ const createPaymentOrder = async (req: AuthRequest, res: Response) => {
 // @desc    Handle mock PhonePe webhook notifications
 // @route   POST /api/payments/webhook
 // @access  Public (PhonePe servers)
-const handlePhonePeWebhook = async (req: Request, res: Response) => {
+const handlePhonePeWebhook = async (req, res) => {
   // PhonePe typically sends a JSON payload in the request body
   // and a signature in a header (e.g., 'X-Verify').
 
@@ -134,7 +125,7 @@ const handlePhonePeWebhook = async (req: Request, res: Response) => {
   // *before* this route handler to get the raw body for signature verification.
   // The JSON body will be available in `req.body` (if parsed) or `req.body.toString()` (if raw).
 
-  const receivedSignature = req.headers["x-verify"] as string | undefined; // Check the actual header name PhonePe uses
+  const receivedSignature = req.headers["x-verify"]; // Check the actual header name PhonePe uses
   const webhookBody = req.body; // This will be the raw body if using express.raw
 
   console.log("Received webhook:", webhookBody.toString());
@@ -250,12 +241,10 @@ const handlePhonePeWebhook = async (req: Request, res: Response) => {
   }
 };
 
-export { createPaymentOrder, handlePhonePeWebhook, handlePhonePeRedirect };
-
 // @desc    Handle PhonePe redirect from browser after payment
 // @route   GET /api/payments/webhook
 // @access  Public (redirected user)
-const handlePhonePeRedirect = async (req: Request, res: Response) => {
+const handlePhonePeRedirect = async (req, res) => {
   try {
     // Extract parameters from the query string
     const { orderId, transactionId, status } = req.query;
@@ -295,7 +284,7 @@ const handlePhonePeRedirect = async (req: Request, res: Response) => {
                 startDate: new Date(),
                 renewalDate: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000), // 30 days
                 paymentGateway: "phonepe",
-                gatewaySubscriptionId: (transactionId as string) || "unknown",
+                gatewaySubscriptionId: transactionId || "unknown",
               },
               create: {
                 userId: targetUser.id,
@@ -304,7 +293,7 @@ const handlePhonePeRedirect = async (req: Request, res: Response) => {
                 startDate: new Date(),
                 renewalDate: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000),
                 paymentGateway: "phonepe",
-                gatewaySubscriptionId: (transactionId as string) || "unknown",
+                gatewaySubscriptionId: transactionId || "unknown",
               },
             });
             console.log(
@@ -315,8 +304,7 @@ const handlePhonePeRedirect = async (req: Request, res: Response) => {
       }
     } else {
       redirectUrl +=
-        "/failure?reason=" +
-        encodeURIComponent((status as string) || "unknown");
+        "/failure?reason=" + encodeURIComponent(status || "unknown");
     }
 
     // In a real production app, you'd use a frontend URL from your config
@@ -390,4 +378,10 @@ const handlePhonePeRedirect = async (req: Request, res: Response) => {
     console.error("Error handling payment redirect:", error);
     res.status(500).send("Error processing payment redirect");
   }
+};
+
+module.exports = {
+  createPaymentOrder,
+  handlePhonePeWebhook,
+  handlePhonePeRedirect,
 };

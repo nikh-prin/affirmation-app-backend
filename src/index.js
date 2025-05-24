@@ -1,13 +1,17 @@
-import express from "express";
-import dotenv from "dotenv";
-import cors from "cors";
-import prisma from "./prisma"; // Import the centralized Prisma client
+const express = require("express");
+const dotenv = require("dotenv");
+const cors = require("cors");
+const prisma = require("./prisma"); // Import the centralized Prisma client
+const notificationService = require("./services/notificationService"); // Import notification service
 
 // Load environment variables from .env file
 dotenv.config();
 
 const app = express();
 const port = process.env.PORT || 3001; // Use port from environment or default to 3001
+
+// Initialize notification service (this will start the cron jobs)
+// notificationService.start(); // Uncomment if you have a start function
 
 // Middleware
 app.use(cors()); // Enable CORS for cross-origin requests
@@ -28,49 +32,53 @@ app.get("/api/health", async (req, res) => {
   try {
     // Check database connection
     await prisma.$queryRaw`SELECT 1`;
-    res.status(200).json({ 
+    res.status(200).json({
       status: "healthy",
       timestamp: new Date().toISOString(),
       services: {
-        database: "connected"
-      }
+        database: "connected",
+      },
     });
   } catch (error) {
     console.error("Health check failed:", error);
-    res.status(500).json({ 
+    res.status(500).json({
       status: "unhealthy",
       timestamp: new Date().toISOString(),
       services: {
-        database: "disconnected"
+        database: "disconnected",
       },
-      message: "Cannot connect to database"
+      message: "Cannot connect to database",
     });
   }
 });
 
 // Import and use authentication routes
-import authRoutes from "./routes/auth.routes";
+const authRoutes = require("./routes/auth.routes");
 app.use("/api/auth", authRoutes);
 
 // Import and use user routes
-import userRoutes from "./routes/user.routes";
+const userRoutes = require("./routes/user.routes");
 app.use("/api/users", userRoutes);
 
 // Import and use favorite routes
-import favoriteRoutes from "./routes/favorite.routes";
+const favoriteRoutes = require("./routes/favorite.routes");
 app.use("/api/favorites", favoriteRoutes);
 
 // Import and use subscription routes
-import subscriptionRoutes from "./routes/subscription.routes";
+const subscriptionRoutes = require("./routes/subscription.routes");
 app.use("/api/subscriptions", subscriptionRoutes);
 
 // Import and use payment routes (includes webhook)
-import paymentRoutes from "./routes/payment.routes";
+const paymentRoutes = require("./routes/payment.routes");
 app.use("/api/payments", paymentRoutes);
 
 // Import and use affirmation routes
-import affirmationRoutes from "./routes/affirmation.routes";
+const affirmationRoutes = require("./routes/affirmation.routes");
 app.use("/api/affirmations", affirmationRoutes);
+
+// Import and use notification routes
+const notificationRoutes = require("./routes/notification.routes");
+app.use("/api/notifications", notificationRoutes);
 
 // Start the server
 const server = app.listen(port, () => {

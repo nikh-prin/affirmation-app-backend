@@ -1,6 +1,6 @@
-import express from "express";
-import { getUserProfile } from "../controllers/user.controller"; // Import controller function
-import { protect } from "../middleware/auth.middleware"; // Import the auth middleware
+const express = require("express");
+const { getUserProfile } = require("../controllers/user.controller"); // Import controller function
+const { protect } = require("../middleware/auth.middleware"); // Import the auth middleware
 
 const router = express.Router();
 
@@ -9,4 +9,4 @@ const router = express.Router();
 router.get("/profile", protect, getUserProfile);
 router.get("/me", protect, getUserProfile); // Add this endpoint as well for compatibility
 
-export default router;
+module.exports = router;

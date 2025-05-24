@@ -1,10 +1,10 @@
-import express from "express";
-import {
+const express = require("express");
+const {
   createPaymentOrder,
   handlePhonePeWebhook,
   handlePhonePeRedirect,
-} from "../controllers/payment.controller"; // Import controller functions
-import { protect } from "../middleware/auth.middleware"; // Import the auth middleware
+} = require("../controllers/payment.controller"); // Import controller functions
+const { protect } = require("../middleware/auth.middleware"); // Import the auth middleware
 
 const router = express.Router();
 
@@ -23,4 +23,4 @@ router.post(
 // Also handle GET requests for the webhook (for redirect from browser)
 router.get("/webhook", handlePhonePeRedirect);
 
-export default router;
+module.exports = router;

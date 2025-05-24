@@ -1,15 +1,9 @@
-import { Request, Response } from "express";
-import prisma from "../prisma"; // Import the centralized Prisma client
-
-// Define a custom interface to add user property to Request, matching auth.middleware
-interface AuthRequest extends Request {
-  user?: { id: string };
-}
+const prisma = require("../prisma"); // Import the centralized Prisma client
 
 // @desc    Get user profile
 // @route   GET /api/users/profile
 // @access  Private (requires authentication)
-const getUserProfile = async (req: AuthRequest, res: Response) => {
+const getUserProfile = async (req, res) => {
   // The user ID is available on req.user because of the 'protect' middleware
   const userId = req.user?.id;
 
@@ -61,4 +55,4 @@ const getUserProfile = async (req: AuthRequest, res: Response) => {
   }
 };
 
-export { getUserProfile };
+module.exports = { getUserProfile };

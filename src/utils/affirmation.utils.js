@@ -1,4 +1,4 @@
-import prisma from "../prisma";
+const prisma = require("../prisma");
 
 // Fallback static data
 const fallbackData = require("../data/fallbackAffirmations.json");
@@ -7,7 +7,7 @@ const fallbackData = require("../data/fallbackAffirmations.json");
  * Get a random affirmation from the database
  * Falls back to static data if no affirmations exist in the database
  */
-export const getRandomAffirmation = async () => {
+const getRandomAffirmation = async () => {
   try {
     // Count total affirmations in database
     const count = await prisma.affirmation.count();
@@ -52,3 +52,5 @@ export const getRandomAffirmation = async () => {
     };
   }
 };
+
+module.exports = { getRandomAffirmation };

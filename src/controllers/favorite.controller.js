@@ -1,14 +1,6 @@
-import { Request, Response } from "express";
-import prisma from "../prisma"; // Assuming prisma client is exported from a 'prisma.ts' or similar in this directory or root
+const prisma = require("../prisma"); // Assuming prisma client is exported from a 'prisma.js' or similar in this directory or root
 
-interface AuthenticatedRequest extends Request {
-  user?: {
-    id: string;
-    // other user properties if available from authMiddleware
-  };
-}
-
-export const addFavorite = async (req: AuthenticatedRequest, res: Response) => {
+const addFavorite = async (req, res) => {
   const { affirmationId } = req.body;
   const userId = req.user?.id;
 
@@ -41,7 +33,7 @@ export const addFavorite = async (req: AuthenticatedRequest, res: Response) => {
       },
     });
     res.status(201).json(favorite);
-  } catch (error: any) {
+  } catch (error) {
     console.error("Error adding favorite:", error);
     res
       .status(500)
@@ -49,10 +41,7 @@ export const addFavorite = async (req: AuthenticatedRequest, res: Response) => {
   }
 };
 
-export const removeFavorite = async (
-  req: AuthenticatedRequest,
-  res: Response
-) => {
+const removeFavorite = async (req, res) => {
   const { affirmationId } = req.params;
   const userId = req.user?.id;
 
@@ -74,7 +63,7 @@ export const removeFavorite = async (
       },
     });
     res.status(204).send(); // No content
-  } catch (error: any) {
+  } catch (error) {
     // Prisma throws an error if the record to delete is not found
     if (error.code === "P2025") {
       return res.status(404).json({ message: "Favorite not found" });
@@ -86,10 +75,7 @@ export const removeFavorite = async (
   }
 };
 
-export const getFavorites = async (
-  req: AuthenticatedRequest,
-  res: Response
-) => {
+const getFavorites = async (req, res) => {
   const userId = req.user?.id;
 
   if (!userId) {
@@ -106,10 +92,16 @@ export const getFavorites = async (
       },
     });
     res.status(200).json(favorites);
-  } catch (error: any) {
+  } catch (error) {
     console.error("Error fetching favorites:", error);
     res
       .status(500)
       .json({ message: "Error fetching favorites", error: error.message });
   }
+};
+
+module.exports = {
+  addFavorite,
+  removeFavorite,
+  getFavorites,
 };

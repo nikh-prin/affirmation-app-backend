@@ -1,10 +1,10 @@
-import { Router } from "express";
-import {
+const { Router } = require("express");
+const {
   addFavorite,
   removeFavorite,
   getFavorites,
-} from "../controllers/favorite.controller";
-import { protect } from "../middleware/auth.middleware"; // Importing the correct middleware name
+} = require("../controllers/favorite.controller");
+const { protect } = require("../middleware/auth.middleware"); // Importing the correct middleware name
 
 const router = Router();
 
@@ -15,4 +15,4 @@ router.post("/", addFavorite);
 router.get("/", getFavorites);
 router.delete("/:affirmationId", removeFavorite);
 
-export default router;
+module.exports = router;

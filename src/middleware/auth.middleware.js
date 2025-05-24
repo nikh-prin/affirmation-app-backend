@@ -1,13 +1,7 @@
-import { Request, Response, NextFunction } from "express";
-import jwt from "jsonwebtoken";
-
-// Define a custom interface to add user property to Request
-interface AuthRequest extends Request {
-  user?: { id: string }; // Or whatever user properties you need
-}
+const jwt = require("jsonwebtoken");
 
 // Middleware to protect routes
-const protect = (req: AuthRequest, res: Response, next: NextFunction) => {
+const protect = (req, res, next) => {
   let token;
 
   // Check for token in the Authorization header (Bearer token)
@@ -20,9 +14,7 @@ const protect = (req: AuthRequest, res: Response, next: NextFunction) => {
       token = req.headers.authorization.split(" ")[1];
 
       // Verify token
-      const decoded = jwt.verify(token, process.env.JWT_SECRET as string) as {
-        id: string;
-      }; // Cast to expected type
+      const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
       // Attach user information to the request object
       // Note: In a real app, you might fetch the user from the DB here
@@ -42,4 +34,4 @@ const protect = (req: AuthRequest, res: Response, next: NextFunction) => {
   }
 };
 
-export { protect };
+module.exports = { protect };
